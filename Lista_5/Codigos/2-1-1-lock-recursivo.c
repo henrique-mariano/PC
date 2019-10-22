@@ -22,7 +22,7 @@ void *foo(void *empty){
     bar();
     pthread_mutex_unlock(&mutex);
 }
-int main(){
+int main() {
     pthread_t t;
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
