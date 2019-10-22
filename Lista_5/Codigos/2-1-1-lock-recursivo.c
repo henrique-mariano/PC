@@ -1,3 +1,7 @@
+// autores: Henrique Mendes de Freitas Mariano e Leonardo Rodrigues de Souza
+// arquivo: 2-1-1-lock-recursivo.c
+// atividade: 2.1.1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -27,6 +31,6 @@ int main(){
     pthread_join(t, NULL);
     pthread_mutex_destroy(&mutex);
     pthread_attr_destroy(&attr);
-    
+
     return 0;
 }

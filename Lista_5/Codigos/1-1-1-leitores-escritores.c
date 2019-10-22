@@ -24,7 +24,6 @@ void *ler(void *args){
     while(1){
         sem_wait(&semaforo);
         printf("%s\n", BD);
-        //printf("%d\n", count);
         sem_post(&semaforo);
         sleep(rand() % 4);
     }
@@ -38,7 +37,6 @@ void *escrever(void *args){
         BD[count] = (char) (*id + '0');
         count++;
         BD[count] = '\0';
-        //printf("%d\n", count);
         pthread_mutex_unlock(&mutex);
         sleep(rand() % 3);
     }
