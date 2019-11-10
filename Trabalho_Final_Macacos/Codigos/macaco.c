@@ -1,8 +1,10 @@
+// autores: Henrique Mendes de Freitas Mariano e Leonardo Rodrigues de Souza
+// arquivo: macaco.c
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <semaphore.h>
 
 typedef enum {
     LEFT, RIGHT
@@ -13,8 +15,6 @@ pthread_mutex_t rightMutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t entrada = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t turno = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t print = PTHREAD_MUTEX_INITIALIZER;
-// pthread_mutex_t gorila = PTHREAD_MUTEX_INITIALIZER;
-// phtread_cond_t gorilaCond = PTHREAD_COND_INITIALIZER;
 
 typedef struct t_monkey {
     side side;
@@ -45,13 +45,12 @@ void *runMonkey(void* id) {
         pthread_mutex_unlock(&print);
         macacos[i].side = (m.side == LEFT)? RIGHT : LEFT;
         sleep(1);
-        // pthread_mutex_lock(&turno);
+
         pthread_mutex_lock(sideMutex);
         if(m.side == LEFT) countLeftSide--;
         else countRightSide--;
         if ((m.side == LEFT && countLeftSide == 0) || (m.side == RIGHT && countRightSide == 0)) pthread_mutex_unlock(&entrada);
         pthread_mutex_unlock(sideMutex);
-        // pthread_mutex_unlock(&turno);
     }
 }
 
